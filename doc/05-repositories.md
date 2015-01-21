@@ -278,6 +278,7 @@ The following are supported:
 * **Git:** [git-scm.com](http://git-scm.com)
 * **Subversion:** [subversion.apache.org](http://subversion.apache.org)
 * **Mercurial:** [mercurial.selenic.com](http://mercurial.selenic.com)
+* **Perforce:** [perforce.com](http://www.perforce.com)
 
 To get packages from these systems you need to have their respective clients
 installed. That can be inconvenient. And for this reason there is special
@@ -404,6 +405,42 @@ and `IntermediatePackage` from a Github repository:
             "foobar/TopLevelPackage2": "*"
         }
     }
+
+### Perforce
+
+It is possible to connect to and download files from a Perforce server.
+
+Perforce can be a bit nagging about wanting you to log in when running Composer.
+It is recommend to log into Perforce in your shell before running any Composer commands.
+
+Each Perforce depot must be added to the repositories list:
+
+    "repositories": [
+        {
+            "type": "perforce",
+            "url": "perforce.localdomain.com:1666",
+            "depot": "//myDepot"
+        },
+    ]
+
+The Perforce driver also supports streams:
+    
+    "repositories": [
+        {
+            "type": "perforce",
+            "url": "perforce.localdomain.com:1666",
+            "depot": "//myDepot/myStream"
+        }
+    ]
+
+There are multiple ways to specify perforce package revisions.  Labels, commit numbers, and "dev-master"
+can be used to retrieve packages.
+
+    
+
+    /* docs here */
+
+
 
 ### Package
 
