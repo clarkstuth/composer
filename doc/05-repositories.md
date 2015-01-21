@@ -408,9 +408,10 @@ and `IntermediatePackage` from a Github repository:
 
 ### Perforce
 
-It is possible to connect to and download files from a Perforce server.
+It is possible to connect to and download files from a Perforce server.  The Perforce driver will
+dynamically create Perforce workspaces to download code on the fly.  These workspaces are deleted
+after each repository is downloaded in order to reduce bloat.
 
-Perforce can be a bit nagging about wanting you to log in when running Composer.
 It is recommend to log into Perforce in your shell before running any Composer commands.
 
 Each Perforce depot must be added to the repositories list:
@@ -419,7 +420,7 @@ Each Perforce depot must be added to the repositories list:
         {
             "type": "perforce",
             "url": "perforce.localdomain.com:1666",
-            "depot": "//myDepot"
+            "depot": "//depot"
         },
     ]
 
@@ -429,17 +430,20 @@ The Perforce driver also supports streams:
         {
             "type": "perforce",
             "url": "perforce.localdomain.com:1666",
-            "depot": "//myDepot/myStream"
+            "depot": "//depot/stream"
         }
     ]
 
-There are multiple ways to specify perforce package revisions.  Labels, commit numbers, and "dev-master"
-can be used to retrieve packages.
+Labels and the "dev-master" designation can be used to retrieve packages.  Labels
+must support normal Composer labeling standards.
 
-    
+    "require": {
+        "author/package": "@label"
+    }
 
-    /* docs here */
-
+    "require": {
+        "author/package": "dev-master
+    }
 
 
 ### Package
